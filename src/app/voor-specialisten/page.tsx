@@ -1,80 +1,82 @@
 import type { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle2 } from "lucide-react";
+import { PageHero } from "@/components/sections/PageHero";
 import { TalentForm } from "@/components/forms/TalentForm";
+import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Voor AI-specialisten — Sluit je aan bij de Flexpool",
-  description: "Werk aan de beste AI-projecten in Nederland op jouw voorwaarden. Interessante opdrachten, eerlijke tarieven, wij regelen de acquisitie.",
+  description: "Werk aan uitdagende AI-projecten bij ambitieuze organisaties. Eerlijke tarieven, wij regelen de acquisitie.",
 };
 
 const benefits = [
-  "Gevarieerde en uitdagende AI-projecten bij MKB+ en enterprise",
+  "Uitdagende AI-projecten bij MKB+ en enterprise organisaties",
   "Wij regelen acquisitie — jij focust op het werk",
   "Eerlijke tarieven, transparant beleid",
   "Snelle matching zonder bureaucratie",
-  "Community van gelijkgestemde AI-professionals",
   "Betaling binnen 14 dagen na facturatie",
+  "Community van AI/ML-professionals",
 ];
 
 const roles = [
   "AI Consultant", "ML Engineer", "Data Scientist", "LLM Engineer",
   "RAG Specialist", "MLOps Engineer", "Data Engineer", "AI Product Owner",
-  "Prompt Engineer", "Automation Specialist", "AI Trainer", "Responsible AI Consultant",
+  "Automation Specialist", "AI Trainer", "Responsible AI Consultant", "Prompt Engineer",
+];
+
+const process = [
+  { n: "1", title: "Aanmelding", desc: "Vul het formulier in. We beoordelen je profiel binnen 5 werkdagen." },
+  { n: "2", title: "Intakegesprek", desc: "20–30 minuten: achtergrond, expertise, beschikbaarheid en verwachtingen." },
+  { n: "3", title: "Technische check", desc: "Korte case of vragen om je expertise te bevestigen." },
+  { n: "4", title: "Welkom in de pool", desc: "Raamovereenkomst getekend, profiel aangemaakt. Match bij eerste passende opdracht." },
 ];
 
 export default function VoorSpecialistenPage() {
   return (
     <>
-      <section className="bg-gradient-to-b from-primary/5 to-background pt-16 pb-20 sm:pt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <Badge variant="secondary" className="mb-4">Voor AI-professionals</Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-              Werk aan de beste AI-projecten. Op jouw voorwaarden.
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Sluit je aan bij de Flexpool — een community van top AI-engineers, data scientists
-              en consultants die werken aan impactvolle projecten bij Nederlandse bedrijven.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badge="Voor AI-specialisten"
+        title="Werk aan de beste AI-projecten."
+        titleAccent="Op jouw voorwaarden."
+        description="Sluit je aan bij een selecte pool van AI/ML-professionals. Wij matchen jou met uitdagende opdrachten bij ambitieuze organisaties in Nederland."
+        cta={{ label: "Meld je aan", href: "#aanmelden" }}
+      />
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Benefits + roles */}
+      <section className="bg-[#F8FAFC] py-24">
+        <div className="mx-auto max-w-[1200px] px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Waarom Flexpool.ai?</h2>
-              <ul className="space-y-3 mb-10">
+              <p className="text-[13px] font-semibold uppercase tracking-widest text-[#2563EB] mb-3">Voordelen</p>
+              <h2 className="text-2xl font-bold text-[#0F172A] mb-8">Waarom de Flexpool?</h2>
+              <ul className="space-y-3.5 mb-10">
                 {benefits.map((b) => (
                   <li key={b} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-sm sm:text-base">{b}</span>
+                    <CheckCircle2 className="h-5 w-5 text-[#2563EB] shrink-0 mt-0.5" strokeWidth={2} />
+                    <span className="text-[15px] text-[#475569]">{b}</span>
                   </li>
                 ))}
               </ul>
-              <h2 className="text-2xl font-bold mb-4" id="rollen">Welke rollen zoeken we?</h2>
+
+              <p className="text-[13px] font-semibold uppercase tracking-widest text-[#2563EB] mb-3" id="rollen">Beschikbare rollen</p>
               <div className="flex flex-wrap gap-2">
                 {roles.map((r) => (
-                  <Badge key={r} variant="secondary" className="text-xs px-3 py-1">{r}</Badge>
+                  <span key={r} className="rounded-full border border-[#E2E8F0] bg-white px-3.5 py-1.5 text-[13px] font-medium text-[#475569]">
+                    {r}
+                  </span>
                 ))}
               </div>
             </div>
-            <div id="proces">
-              <h2 className="text-2xl font-bold mb-6">Hoe werkt het aanmeldproces?</h2>
-              <div className="space-y-6">
-                {[
-                  { n: "1", t: "Aanmelding", d: "Vul het formulier in. We bekijken je profiel binnen 5 werkdagen." },
-                  { n: "2", t: "Intake-gesprek", d: "Een kort gesprek (20–30 min) over je achtergrond, expertise en voorkeuren." },
-                  { n: "3", t: "Technische beoordeling", d: "Korte case of technische vraagstelling om je niveau te bevestigen." },
-                  { n: "4", t: "Welkom in de pool", d: "Contract getekend, profiel aangemaakt. We matchen je zodra er een passende opdracht is." },
-                ].map((s) => (
+
+            <div>
+              <p className="text-[13px] font-semibold uppercase tracking-widest text-[#2563EB] mb-3" id="proces">Aanmeldproces</p>
+              <h2 className="text-2xl font-bold text-[#0F172A] mb-8">Hoe werkt het?</h2>
+              <div className="space-y-5">
+                {process.map((s) => (
                   <div key={s.n} className="flex gap-4">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm shrink-0">{s.n}</div>
-                    <div>
-                      <p className="font-semibold text-sm">{s.t}</p>
-                      <p className="text-muted-foreground text-sm">{s.d}</p>
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-[#2563EB]/25 bg-white text-[13px] font-bold text-[#2563EB]">{s.n}</div>
+                    <div className="pt-1">
+                      <p className="text-[15px] font-semibold text-[#0F172A] mb-0.5">{s.title}</p>
+                      <p className="text-[14px] text-[#64748B]">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -84,13 +86,16 @@ export default function VoorSpecialistenPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Form */}
+      <section id="aanmelden" className="bg-white py-24 border-t border-[#E2E8F0]">
+        <div className="mx-auto max-w-[640px] px-6">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-3">Meld je aan als specialist</h2>
-            <p className="text-muted-foreground">We beoordelen je aanmelding binnen 5 werkdagen.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-3">Meld je aan als specialist</h2>
+            <p className="text-[15px] text-[#64748B]">We beoordelen je aanmelding binnen 5 werkdagen.</p>
           </div>
-          <TalentForm />
+          <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-8">
+            <TalentForm />
+          </div>
         </div>
       </section>
     </>
