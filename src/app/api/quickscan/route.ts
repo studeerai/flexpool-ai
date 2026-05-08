@@ -1,22 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, email, company, job_title, company_size, sector, challenge } = body;
+    const { name, email, company, job_title, company_size, sector, challenge } = await req.json();
 
     if (!name || !email || !company || !challenge) {
       return NextResponse.json({ error: "Verplichte velden ontbreken" }, { status: 400 });
     }
 
-    // TODO: Supabase insert
-    // const { error } = await supabase.from("quickscan_requests").insert({...})
+    const { error } = await supabaseAdmin
+      .from("quickscan_requests")
+      .insert({ name, email, company, job_title, company_size, sector, challenge });
 
-    // TODO: Resend notification email to info@flexpool.ai
-    console.log("New quickscan request:", { name, email, company, job_title, company_size, sector });
+    if (error) throw error;
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("Quickscan form error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
