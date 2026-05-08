@@ -107,7 +107,7 @@ export default function CasesPage() {
               <p className="text-[15px] text-[#64748B]">We delen graag relevante referenties en voorbeelden die passen bij jouw sector en vraagstuk.</p>
             </div>
             <Link href="/contact" className="btn-primary text-[14px] px-6 py-3 shrink-0">
-              Neem contact op <ArrowRight className="h-4 w-4" />
+              Bespreek mijn situatie <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

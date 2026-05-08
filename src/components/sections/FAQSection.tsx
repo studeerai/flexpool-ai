@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export const faqs = [
   {
     q: "Wat doet Flexpool.ai precies?",
     a: "Flexpool.ai koppelt bedrijven aan tijdelijke AI-specialisten, consultants en implementatieteams. We helpen organisaties van AI-idee naar werkende implementatie — via een gestructureerde Quickscan, expertmatch of een volledig projectteam.",
@@ -34,20 +34,37 @@ const faqs = [
   },
   {
     q: "Hoe snel kunnen we starten?",
-    a: "Een AI Quickscan is doorgaans binnen 1–2 weken afgerond. Een expertmatch voor een specifieke rol gaat gemiddeld in 48 uur. De startdatum van een project is afhankelijk van scope en beschikbaarheid, maar we streven altijd naar een snelle start.",
+    a: "Een AI Quickscan is doorgaans binnen 1–2 weken afgerond. Een expertmatch voor een specifieke rol gaat gemiddeld snel. De startdatum van een project is afhankelijk van scope en beschikbaarheid, maar we streven altijd naar een snelle start.",
   },
 ];
 
 export function FAQSection() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a,
+      },
+    })),
+  };
+
   return (
     <section className="bg-white py-24 border-t border-[#E2E8F0]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="mx-auto max-w-[1200px] px-6">
-        <div className="grid lg:grid-cols-[320px_1fr] gap-16">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-16">
           <div>
             <p className="text-[13px] font-semibold uppercase tracking-widest text-[#2563EB] mb-4">
               FAQ
             </p>
-            <h2 className="text-3xl font-bold text-[#0F172A] leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] leading-tight mb-4">
               Veelgestelde vragen
             </h2>
             <p className="text-[15px] text-[#64748B] leading-relaxed">
@@ -55,12 +72,12 @@ export function FAQSection() {
             </p>
           </div>
 
-          <Accordion multiple={false} className="space-y-3">
+          <Accordion multiple={false} className="space-y-2.5">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
                 value={i}
-                className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-6 data-[open]:bg-white data-[open]:border-[#CBD5E1] data-[open]:shadow-sm transition-all"
+                className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-6 data-[open]:bg-white data-[open]:border-[#2563EB]/20 transition-colors"
               >
                 <AccordionTrigger className="py-5 text-[15px] font-semibold text-[#0F172A] text-left hover:no-underline [&>svg]:text-[#2563EB]">
                   {faq.q}

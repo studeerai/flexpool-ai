@@ -5,11 +5,11 @@ import { useState, useEffect } from "react";
 import { Menu, X, Zap } from "lucide-react";
 
 const navLinks = [
-  { href: "/diensten", label: "Diensten" },
   { href: "/voor-bedrijven", label: "Voor bedrijven" },
-  { href: "/voor-specialisten", label: "Voor AI-specialisten" },
+  { href: "/diensten", label: "Diensten" },
   { href: "/trainingen", label: "Trainingen" },
   { href: "/cases", label: "Cases" },
+  { href: "/voor-specialisten", label: "Voor AI-specialisten" },
   { href: "/over-ons", label: "Over ons" },
   { href: "/contact", label: "Contact" },
 ];

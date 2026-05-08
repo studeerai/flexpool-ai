@@ -39,41 +39,43 @@ export function WorkflowSection() {
           </h2>
         </div>
 
-        {/* Desktop: horizontal stepper */}
-        <div className="hidden lg:block">
-          <div className="relative">
-            {/* Connector line */}
-            <div className="absolute top-5 left-[calc(10%+1.25rem)] right-[calc(10%+1.25rem)] h-px bg-[#E2E8F0]" />
-            <div className="grid grid-cols-5 gap-6">
-              {steps.map((s) => (
-                <div key={s.n} className="relative flex flex-col">
-                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#2563EB]/30 bg-white text-[13px] font-bold text-[#2563EB] shadow-sm shadow-blue-500/10 relative z-10">
-                    {s.n}
-                  </div>
-                  <h3 className="text-[14px] font-semibold text-[#0F172A] mb-2">{s.title}</h3>
-                  <p className="text-[13px] leading-relaxed text-[#64748B]">{s.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* Single DOM tree — responsive via CSS only */}
+        <div className="relative">
+          {/* Horizontal connector line — desktop only */}
+          <div
+            aria-hidden="true"
+            className="hidden lg:block absolute top-5 h-px bg-[#E2E8F0]"
+            style={{ left: "calc(4% + 20px)", right: "calc(4% + 20px)" }}
+          />
 
-        {/* Mobile: vertical */}
-        <div className="lg:hidden space-y-0">
-          {steps.map((s, i) => (
-            <div key={s.n} className="flex gap-5">
-              <div className="flex flex-col items-center">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-[#2563EB]/30 bg-white text-[12px] font-bold text-[#2563EB]">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 lg:gap-6">
+            {steps.map((s, i) => (
+              <div key={s.n} className="flex lg:flex-col gap-4 lg:gap-0 relative pb-8 lg:pb-0">
+                {/* Vertical connector — mobile only */}
+                {i < steps.length - 1 && (
+                  <div
+                    aria-hidden="true"
+                    className="lg:hidden absolute left-[18px] top-[36px] bottom-0 w-px bg-[#E2E8F0]"
+                  />
+                )}
+
+                {/* Step number */}
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#2563EB]/30 bg-white text-[13px] font-bold text-[#2563EB] relative z-10 lg:mb-6">
                   {s.n}
                 </div>
-                {i < steps.length - 1 && <div className="mt-2 w-px flex-1 bg-[#E2E8F0] min-h-[32px]" />}
+
+                {/* Text */}
+                <div>
+                  <h3 className="text-[15px] lg:text-[14px] font-semibold text-[#0F172A] mb-1.5 lg:mb-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-[14px] lg:text-[13px] leading-relaxed text-[#64748B]">
+                    {s.description}
+                  </p>
+                </div>
               </div>
-              <div className="pb-8">
-                <h3 className="text-[15px] font-semibold text-[#0F172A] mb-1.5">{s.title}</h3>
-                <p className="text-[14px] leading-relaxed text-[#64748B]">{s.description}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

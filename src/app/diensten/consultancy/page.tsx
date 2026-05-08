@@ -67,7 +67,7 @@ export default function ConsultancyPage() {
               <p className="text-[15px] text-[#64748B]">We bespreken jouw AI-uitdaging en welk traject het beste past.</p>
             </div>
             <Link href="/contact" className="btn-primary text-[14px] px-6 py-3 shrink-0">
-              Neem contact op <ArrowRight className="h-4 w-4" />
+              Plan een strategiegesprek <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

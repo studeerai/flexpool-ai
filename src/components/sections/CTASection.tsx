@@ -31,7 +31,7 @@ export function CTASection() {
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link href="/contact" className="btn-outline-dark text-[15px] px-8 py-4">
-            Neem contact op
+            Bespreek mijn situatie
           </Link>
         </div>
       </div>

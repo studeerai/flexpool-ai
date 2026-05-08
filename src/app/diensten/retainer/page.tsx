@@ -82,7 +82,7 @@ export default function RetainerPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-[13px] text-[#94A3B8] mt-4">Alle pakketten zijn op maat aan te passen. Neem contact op voor een offerte.</p>
+              <p className="text-[13px] text-[#94A3B8] mt-4">Alle pakketten zijn op maat aan te passen. Vraag een offerte op maat aan.</p>
             </div>
           </div>
         </div>
