@@ -5,24 +5,37 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
+
+  /* Brand color tokens */
+  --color-navy-darkest: #050A14;
+  --color-navy-dark:    #081120;
+  --color-navy:         #0F172A;
+  --color-blue:         #2563EB;
+  --color-blue-hover:   #1D4ED8;
+  --color-violet:       #7C3AED;
+  --color-indigo:       #6D5EF3;
+  --color-slate-light:  #F8FAFC;
+
+  /* shadcn token mappings */
+  --color-background:        var(--background);
+  --color-foreground:        var(--foreground);
+  --color-card:              var(--card);
+  --color-card-foreground:   var(--card-foreground);
+  --color-primary:           var(--primary);
+  --color-primary-foreground:var(--primary-foreground);
+  --color-secondary:         var(--secondary);
+  --color-secondary-foreground:var(--secondary-foreground);
+  --color-muted:             var(--muted);
+  --color-muted-foreground:  var(--muted-foreground);
+  --color-accent:            var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+  --color-destructive:       var(--destructive);
+  --color-border:            var(--border);
+  --color-input:             var(--input);
+  --color-ring:              var(--ring);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -30,55 +43,38 @@
 }
 
 :root {
-  /* Flexpool.ai brand colors */
-  --background: oklch(0.99 0 0);
-  --foreground: oklch(0.13 0.02 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.02 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.02 250);
-  /* Indigo primary */
-  --primary: oklch(0.55 0.22 264);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.01 250);
-  --secondary-foreground: oklch(0.13 0.02 250);
-  --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.50 0.02 250);
-  --accent: oklch(0.96 0.01 250);
-  --accent-foreground: oklch(0.13 0.02 250);
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #F1F5F9;
+  --accent-foreground: #0F172A;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.91 0.01 250);
-  --input: oklch(0.91 0.01 250);
-  --ring: oklch(0.55 0.22 264);
-  --radius: 0.625rem;
-}
-
-.dark {
-  --background: oklch(0.09 0.02 250);
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.13 0.02 250);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.13 0.02 250);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.62 0.22 264);
-  --primary-foreground: oklch(0.09 0.02 250);
-  --secondary: oklch(0.18 0.02 250);
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.18 0.02 250);
-  --muted-foreground: oklch(0.60 0.02 250);
-  --accent: oklch(0.18 0.02 250);
-  --accent-foreground: oklch(0.97 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.62 0.22 264);
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #2563EB;
+  --radius: 0.75rem;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-  }
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground antialiased; }
+  html { scroll-behavior: smooth; }
+}
+
+/* Utility: brand button */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-blue px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue;
+}
+.btn-outline-dark {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40;
+}
+.btn-outline-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[#E2E8F0] px-6 py-3 text-sm font-semibold text-[#0F172A] transition-colors hover:bg-[#F1F5F9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue;
 }

@@ -1,75 +1,106 @@
 import Link from "next/link";
-import { Zap } from "lucide-react";
+import { Zap, ExternalLink } from "lucide-react";
 
-const footerLinks = {
-  Diensten: [
-    { href: "/diensten/ai-quickscan", label: "AI Quickscan" },
-    { href: "/diensten/ai-expert-flex", label: "AI Expert Flex" },
-    { href: "/diensten/implementation-squad", label: "Implementation Squad" },
-    { href: "/diensten/fractional-ai-lead", label: "Fractional AI Lead" },
-    { href: "/trainingen", label: "AI Trainingen" },
-    { href: "/diensten/retainer", label: "AI Retainer" },
-  ],
-  Bedrijf: [
-    { href: "/over-ons", label: "Over ons" },
-    { href: "/ai-experts", label: "AI Experts" },
-    { href: "/cases", label: "Cases" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
-  ],
-  Specialisten: [
-    { href: "/voor-specialisten", label: "Meld je aan" },
-    { href: "/voor-specialisten#rollen", label: "Beschikbare rollen" },
-    { href: "/voor-specialisten#proces", label: "Hoe het werkt" },
-  ],
-};
+const footerCols = [
+  {
+    heading: "Diensten",
+    links: [
+      { href: "/diensten/ai-quickscan", label: "AI Quickscan" },
+      { href: "/diensten/ai-expert-flex", label: "AI Expert Flex" },
+      { href: "/diensten/implementation-squad", label: "Implementation Squad" },
+      { href: "/diensten/consultancy", label: "AI Consultancy" },
+      { href: "/trainingen", label: "AI Training Academy" },
+      { href: "/diensten/retainer", label: "AI Retainer" },
+    ],
+  },
+  {
+    heading: "Voor bedrijven",
+    links: [
+      { href: "/voor-bedrijven", label: "Overzicht" },
+      { href: "/cases", label: "Cases" },
+      { href: "/diensten/ai-quickscan", label: "Gratis AI Quickscan" },
+    ],
+  },
+  {
+    heading: "Voor specialisten",
+    links: [
+      { href: "/voor-specialisten", label: "Aanmelden" },
+      { href: "/voor-specialisten#rollen", label: "Beschikbare rollen" },
+    ],
+  },
+  {
+    heading: "Bedrijf",
+    links: [
+      { href: "/over-ons", label: "Over ons" },
+      { href: "/trainingen", label: "Trainingen" },
+      { href: "/contact", label: "Contact" },
+      { href: "/blog", label: "Blog" },
+    ],
+  },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
+    <footer className="bg-[#050A14] border-t border-white/8">
+      <div className="mx-auto max-w-[1200px] px-6 pt-16 pb-10">
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-[280px_1fr] lg:gap-16 mb-14">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 font-semibold text-lg mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Zap className="h-4 w-4 text-primary-foreground" />
+          <div className="col-span-2 lg:col-span-1">
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2563EB]">
+                <Zap className="h-4 w-4 text-white" strokeWidth={2.5} />
               </div>
-              <span>Flexpool.ai</span>
+              <span className="text-[15px] font-semibold text-white">Flexpool.ai</span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+            <p className="text-[14px] leading-relaxed text-white/45 max-w-xs mb-6">
               De flexibele AI-afdeling voor bedrijven die AI willen implementeren.
             </p>
-            <p className="text-sm text-muted-foreground mt-4">
-              📧 info@flexpool.ai
-            </p>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-[13px] text-white/60 hover:text-white hover:border-white/25 transition-colors"
+            >
+              <ExternalLink className="h-4 w-4" />
+              LinkedIn
+            </a>
           </div>
 
           {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="text-sm font-semibold mb-3">{category}</h3>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="col-span-2 lg:col-span-1 grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {footerCols.map((col) => (
+              <div key={col.heading}>
+                <p className="text-[12px] font-semibold uppercase tracking-widest text-white/35 mb-4">
+                  {col.heading}
+                </p>
+                <ul className="space-y-2.5">
+                  {col.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-[13px] text-white/50 hover:text-white/90 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Flexpool.ai. Alle rechten voorbehouden.</p>
-          <div className="flex gap-4">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacybeleid</Link>
-            <Link href="/algemene-voorwaarden" className="hover:text-foreground transition-colors">Algemene voorwaarden</Link>
+        <div className="border-t border-white/8 pt-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] text-white/30">
+            © {new Date().getFullYear()} Flexpool.ai — Alle rechten voorbehouden.
+          </p>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy" className="text-[12px] text-white/30 hover:text-white/60 transition-colors">
+              Privacybeleid
+            </Link>
+            <Link href="/algemene-voorwaarden" className="text-[12px] text-white/30 hover:text-white/60 transition-colors">
+              Algemene voorwaarden
+            </Link>
           </div>
         </div>
       </div>
